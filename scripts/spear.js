@@ -2,11 +2,12 @@ class Spear {
     constructor (mouseX, mouseY) {
         this.x = 255;
         this.y = 235;
-        this.w = 80;
+        this.w = 60;
         this.h = 8;
         this.speed = 8;
-        this.spearbgSpeed = 10;
+        this.spearbgSpeed = 15;
         //mouse possition
+        this.isSpearOn = true;
         this.mouseX = mouseX;
         this.mouseY = mouseY;
     }
@@ -32,25 +33,17 @@ class Spear {
             this.y -= this.speed;
         }
     }
-    // spear's movement related to 
+    // spear related to bg
     moveSpearUp = () => {
-        if (this.x === this.mouseX && this.y === this.mouseY){
-            this.y += (this.spearbgSpeed);
-        }
+        this.y += (this.spearbgSpeed);
     }
     moveSpearDown = () => {
-        if (this.x === this.mouseX && this.y === this.mouseY){
-            this.y -= (this.spearbgSpeed);
-        }
+        this.y -= (this.spearbgSpeed);
     }
     moveSpearLeft = () => {
-        if (this.x === this.mouseX && this.y === this.mouseY){
-            this.x += (this.spearbgSpeed);
-        }
+        this.x += (this.spearbgSpeed);
     }
     moveSpearRight = () => {
-        if (this.x === this.mouseX && this.y === this.mouseY){
-            this.x -= (this.spearbgSpeed);
-        }
+        this.x -= (this.spearbgSpeed);
     }
 }

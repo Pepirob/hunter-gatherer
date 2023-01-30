@@ -3,12 +3,15 @@ class Game {
     constructor () {
         this.bg = new Background();
         this.caveWoman = new CaveWoman();
+        this.enemy = new Enemies();
+        this.spear = new Spear();
         this.enemiesArr = [];
         this.spearsArr = [];
         this.isGameOn = true;
         this.frames = 1;
     
     }
+
 
     //METHODS
     clearCanvas = () => {
@@ -26,7 +29,7 @@ class Game {
 
             let enemy = new Enemies (randomPosX, randomPosY, randomSpeed, randomBgSpeed);
             this.enemiesArr.push(enemy);
-            // console.log("hay un enemigo");
+            console.log("hay un enemigo");
         }
     }
 
@@ -52,7 +55,37 @@ class Game {
         this.spearsArr.forEach((spear) => {
             spear.throwSpear();
         });
+        
     }
+
+    //colissions
+    spearEnemyColission = () => {
+        this.spearsArr.forEach((spear, spearIndex) => {
+           this.enemiesArr.forEach((enemy, index) => {
+            if( spear.x < enemy.x + enemy.w &&
+                spear.x + spear.w > enemy.x &&
+                spear.y < enemy.y + enemy.h &&
+                spear.h + spear.y > enemy.y){
+                this.enemiesArr.splice(index, 1)
+                this.spearsArr.splice(spearIndex, 1)
+                console.log("enemigo asesinado");
+            } 
+           })
+        });
+       }
+
+    enemyPlayerColission = () => {
+        this.enemiesArr.forEach((enemy) => {
+            if (enemy.x < this.caveWoman.x + this.caveWoman.w &&
+                enemy.x + enemy.w > this.caveWoman.x &&
+                enemy.y < this.caveWoman.y + this.caveWoman.h &&
+                enemy.h + enemy.y > this.caveWoman.y ) {
+                    console.log("contact");
+                }
+        })
+    }
+            
+    
 
     gameLoop = () => {
 
@@ -72,6 +105,8 @@ class Game {
        
         this.allEnemiesMoves();
         this.throwAllSpears();
+        this.spearEnemyColission();
+        this.enemyPlayerColission();
         
 
         //4. recursion control

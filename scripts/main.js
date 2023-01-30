@@ -117,49 +117,58 @@ const enemiesRelatedToBg = (event) => {
 
 // Spear mechanics
 
+spearRelatedTobg = (event) => {
+ game.spearsArr.forEach((spear) => {
+ 
+           //UP
+ if (event.code === 'KeyW'){
+    wKey = true;
+    spear.moveSpearUp();
+ }
+
+
+ //DOWN
+ if (event.code === 'KeyS'){
+    sKey = true;
+    spear.moveSpearDown();
+    
+ }
+
+
+ //LEFT
+ if (event.code === 'KeyA'){
+    aKey = true;
+    spear.moveSpearLeft();
+ }
+
+
+ //RIGHT
+ if (event.code === 'KeyD'){
+    dKey = true;
+    spear.moveSpearRight();
+ }
+ 
+ });
+}
+
 const spearMechanic = (event) => {
     const rect = canvas.getBoundingClientRect()
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
-    let spear = new Spear (x, y);
-    game.spearsArr.push(spear);
-    console.log("x: " + x + " y: " + y);
-}
-
-const spearMovement = (event) => {
-    game.spearsArr.forEach((spear) => {
-        //UP
-        
-     if (event.code === 'KeyW'){
-     wKey = true;
-     spear.moveSpearUp();
-     }
-
-
-     //DOWN
-     if (event.code === 'KeyS'){
-     sKey = true;
-     spear.moveSpearDown();
+    if (x > (canvas.width /2)){
+        let spear = new Spear (x - game.spear.w, y);
+        game.spearsArr.push(spear);
+        setTimeout(() => {
+            game.spearsArr.splice(0, 1)
+        }, 500);
+    } else {let spear = new Spear (x, y);
+        game.spearsArr.push(spear);
+        setTimeout(() => {
+            game.spearsArr.splice(0, 1)
+        }, 500);}
     
-     }
-
-
-     //LEFT
-     if (event.code === 'KeyA'){
-     aKey = true;
-     spear.moveSpearLeft();
-     }
-
-
-     //RIGHT
-     if (event.code === 'KeyD'){
-     dKey = true;
-     spear.moveSpearRight();
-     }
-     });
+    // console.log("x: " + x + " y: " + y);
 }
-
-
 
 // ADDEVENTLISTENERS
 
@@ -167,4 +176,3 @@ startBtn.addEventListener('click', startGame)
 window.addEventListener('keydown', backgroundMoving)
 window.addEventListener('keydown', enemiesRelatedToBg)
 canvas.addEventListener('click',  spearMechanic)
-window.addEventListener('keydown', spearMovement)

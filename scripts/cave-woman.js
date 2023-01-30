@@ -4,6 +4,7 @@ class CaveWoman {
         this.y = 225;
         this.w = 50;
         this.h = 50;
+        this.health = 5;
     }
 
     //METHODS
