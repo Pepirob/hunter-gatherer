@@ -115,7 +115,49 @@ const enemiesRelatedToBg = (event) => {
 //     }
 // }
 
+// Spear mechanics
 
+const spearMechanic = (event) => {
+    const rect = canvas.getBoundingClientRect()
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+    let spear = new Spear (x, y);
+    game.spearsArr.push(spear);
+    console.log("x: " + x + " y: " + y);
+}
+
+const spearMovement = (event) => {
+    game.spearsArr.forEach((spear) => {
+        //UP
+        
+     if (event.code === 'KeyW'){
+     wKey = true;
+     spear.moveSpearUp();
+     }
+
+
+     //DOWN
+     if (event.code === 'KeyS'){
+     sKey = true;
+     spear.moveSpearDown();
+    
+     }
+
+
+     //LEFT
+     if (event.code === 'KeyA'){
+     aKey = true;
+     spear.moveSpearLeft();
+     }
+
+
+     //RIGHT
+     if (event.code === 'KeyD'){
+     dKey = true;
+     spear.moveSpearRight();
+     }
+     });
+}
 
 
 
@@ -124,4 +166,5 @@ const enemiesRelatedToBg = (event) => {
 startBtn.addEventListener('click', startGame)
 window.addEventListener('keydown', backgroundMoving)
 window.addEventListener('keydown', enemiesRelatedToBg)
-// window.addEventListener('keyup', pressCheck)
+canvas.addEventListener('click',  spearMechanic)
+window.addEventListener('keydown', spearMovement)

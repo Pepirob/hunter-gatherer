@@ -11,6 +11,7 @@ class Enemies {
     //METHODS
 
     drawEnemy = () => {
+        ctx.fillStyle = 'yellow';
         ctx.fillRect(this.x, this.y, this.w, this.h);
     }
 

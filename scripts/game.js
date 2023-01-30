@@ -4,6 +4,7 @@ class Game {
         this.bg = new Background();
         this.caveWoman = new CaveWoman();
         this.enemiesArr = [];
+        this.spearsArr = [];
         this.isGameOn = true;
         this.frames = 1;
     
@@ -25,7 +26,7 @@ class Game {
 
             let enemy = new Enemies (randomPosX, randomPosY, randomSpeed, randomBgSpeed);
             this.enemiesArr.push(enemy);
-            console.log("hay un enemigo");
+            // console.log("hay un enemigo");
         }
     }
 
@@ -41,6 +42,17 @@ class Game {
        })
     }
 
+    drawAllSpears = () => {
+        this.spearsArr.forEach((spear) => {
+            spear.drawSpear();
+        });
+    }
+
+    throwAllSpears = () => {
+        this.spearsArr.forEach((spear) => {
+            spear.throwSpear();
+        });
+    }
 
     gameLoop = () => {
 
@@ -52,12 +64,14 @@ class Game {
         //2. drawings
         this.bg.drawBg();
         this.caveWoman.drawCaveWoman();
-        this.spawningEnemies()
-        this.drawAllEnemies()
+        this.spawningEnemies();
+        this.drawAllEnemies();
+        this.drawAllSpears();
 
         //3. actions
-        //enemies static (moving with background)
+       
         this.allEnemiesMoves();
+        this.throwAllSpears();
         
 
         //4. recursion control
@@ -67,6 +81,8 @@ class Game {
 
     }
 }
+   
+
     
 
 

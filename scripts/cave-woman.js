@@ -8,6 +8,7 @@ class CaveWoman {
 
     //METHODS
     drawCaveWoman = () => {
+        ctx.fillStyle = 'black';
         ctx.fillRect(this.x,this.y,this.w,this.h)
     }
 }
