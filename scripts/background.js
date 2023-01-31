@@ -2,10 +2,10 @@ class Background {
     constructor() {
         this.bg = new Image()
         this.bg.src = './images/image.webp'
-        this.x = -1200;
-        this.y = -1200;
-        this.w = 3000;
-        this.h = 2900;
+        this.x = -1600;
+        this.y = -1600;
+        this.w = 3200;
+        this.h = 3000;
         this.bgSpeed = 10;
     }
 
@@ -28,22 +28,5 @@ class Background {
     moveBgRight = () => {
         this.x -= this.bgSpeed;
     }
-    // Moving diagonal
-    // moveBgUpRight = () => {
-    //     this.x -= this.bgSpeed;
-    //     this.y += this.bgSpeed;
-    // }
-    // moveBgDownRight = () => {
-    //     this.x -= this.bgSpeed;
-    //     this.y -= this.bgSpeed;
-    // }
-    // moveBgUpLeft = () => {
-    //     this.x += this.bgSpeed;
-    //     this.y += this.bgSpeed
-    // }
-    // moveBgDownLeft = () => {
-    //     this.x += this.bgSpeed;
-    //     this.y -= this.bgSpeed;
-    // }
 
 }

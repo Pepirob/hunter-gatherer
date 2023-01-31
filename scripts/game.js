@@ -8,7 +8,13 @@ class Game {
         this.spearsArr = [];
         this.isGameOn = true;
         this.frames = 1;
-    
+        //movement property
+        this.controller = {
+            KeyW: {pressed: false, functionBg: this.bg.moveBgUp, functionEnemy: this.enemiesRelatedToBgUp},
+            KeyS: {pressed: false, functionBg: this.bg.moveBgDown, functionEnemy: this.enemiesRelatedToBgDown},
+            KeyA: {pressed: false, functionBg: this.bg.moveBgLeft, functionEnemy: this.enemiesRelatedToBgLeft},
+            KeyD: {pressed: false, functionBg: this.bg.moveBgRight, functionEnemy: this.enemiesRelatedToBgRight}
+        }
     }
 
 
@@ -21,8 +27,8 @@ class Game {
         let randomFrame = Math.floor(Math.random() * 1200 + 1)
 
         if(this.enemiesArr === 0 || this.frames % randomFrame === 0) {
-            let randomPosX = Math.random() * (3000 - (-1200)) + (-1200);
-            let randomPosY = Math.random() * (2900 - (-1200)) + (-1200);
+            let randomPosX = Math.random() * (this.bg.w - (this.bg.x)) + (this.bg.x);
+            let randomPosY = Math.random() * (this.bg.h - (this.bg.y)) + (this.bg.y);
             let randomSpeed = Math.random() * (2 - 1) + 1;
             let randomBgSpeed = Math.random() * (10 - 5) + 5;
 
@@ -55,6 +61,51 @@ class Game {
             spear.throwSpear();
         });
         
+    }
+
+    // Movement
+    movement = () => {
+        Object.keys(this.controller).forEach((key) => {
+            // console.log("presionando")
+            if(this.controller[key].pressed === true){
+                // console.log("presionando")
+                this.controller[key].functionBg();
+                this.controller[key].functionEnemy();
+            }
+            // this.controller[key].pressed && this.controller[key].functionBg && this.controller[key].functionEnemy
+        })
+    }
+    enemiesRelatedToBgUp = () => {
+        this.enemiesArr.forEach((enemy) => {
+                //UP
+        
+            enemy.moveEnemyUp();
+        
+       })
+    }
+    enemiesRelatedToBgDown = () => {
+        this.enemiesArr.forEach((enemy) => {
+                //DOWN
+        
+            enemy.moveEnemyDown();
+        
+       })
+    }
+    enemiesRelatedToBgLeft = () => {
+        this.enemiesArr.forEach((enemy) => {
+                //LEFT
+        
+            enemy.moveEnemyLeft();
+        
+       })
+    }
+    enemiesRelatedToBgRight = () => {
+        this.enemiesArr.forEach((enemy) => {
+                //RIGHT
+        
+            enemy.moveEnemyRight();
+        
+       })
     }
 
     //colissions
@@ -119,7 +170,7 @@ class Game {
         this.drawAllSpears();
 
         //3. actions
-       
+        this.movement();
         this.allEnemiesMoves();
         this.throwAllSpears();
         this.spearEnemyColission();

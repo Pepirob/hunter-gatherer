@@ -41,89 +41,19 @@ const startGame = () => {
 
 //Player movement
 
-const backgroundMoving = (event) => {
-    //UP
-    if (event.code === 'KeyW'){
-        wKey = true;
-        game.bg.moveBgUp();
+//Checking if keys are pressed
+const keyDownCheck = (event) => {
+    if(game.controller[event.code]){
+        // console.log("presionando")
+        game.controller[event.code].pressed = true
     }
-
-
-    //DOWN
-    if (event.code === 'KeyS'){
-        sKey = true;
-        game.bg.moveBgDown();
-        
-    }
-
-
-    //LEFT
-    if (event.code === 'KeyA'){
-        aKey = true;
-        game.bg.moveBgLeft();
-    }
-
-
-    //RIGHT
-    if (event.code === 'KeyD'){
-        dKey = true;
-        game.bg.moveBgRight();
-    }
-
-
-    // //UP RIGHT
-    // if (aKey && dKey){
-       
-    //     game.bg.moveBgUpRight();
-    //     console.log("funciona")
-    // }
 }
 
-const enemiesRelatedToBg = (event) => {
-    game.enemiesArr.forEach((enemy) => {
-            //UP
-    if (event.code === 'KeyW'){
-        wKey = true;
-        enemy.moveEnemyUp();
+const keyUpCheck = (event) => {
+    if(game.controller[event.code]){
+        game.controller[event.code].pressed = false
     }
-
-
-    //DOWN
-    if (event.code === 'KeyS'){
-        sKey = true;
-        enemy.moveEnemyDown();
-        
-    }
-
-
-    //LEFT
-    if (event.code === 'KeyA'){
-        aKey = true;
-        enemy.moveEnemyLeft();
-    }
-
-
-    //RIGHT
-    if (event.code === 'KeyD'){
-        dKey = true;
-        enemy.moveEnemyRight();
-    }
-    });
 }
-// const pressCheck = (event) => {
-//     if(event.code === 'KeyW') {
-//         wKey = false;
-//     }
-//     if(event.code === 'KeyS') {
-//         sKey = false;
-//     }
-//     if(event.code === 'KeyD') {
-//         dKey = false;
-//     }
-//     if(event.code === 'KeyA') {
-//         aKey = false;
-//     }
-// }
 
 // Spear mechanics
 
@@ -150,8 +80,8 @@ const spearMechanic = (event) => {
 // ADDEVENTLISTENERS
 
 startBtn.addEventListener('click', startGame)
-window.addEventListener('keydown', backgroundMoving)
-window.addEventListener('keydown', enemiesRelatedToBg)
+window.addEventListener('keydown', keyDownCheck)
+window.addEventListener('keyup', keyUpCheck)
 canvas.addEventListener('click',  spearMechanic)
 restartBtn.addEventListener('click', startGame)
 
