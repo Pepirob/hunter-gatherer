@@ -11,18 +11,20 @@ class Spear {
         this.mouseX = mouseX;
         this.mouseY = mouseY;
         this.image = new Image();
-        if(this.mouseX < 300) {
-            this.image.src = './images/Spear - copia.png'
-        } else if (this.mouseX > 300){
-            this.image.src = './images/Spear - copia (2).png'
-        } 
-          else if (this.mouseY > 250){
-            this.image.src = '../images/Spear - copia (3).png'
-        } 
-        else if (this.mouseY < 250){
-            this.image.src = '../images/Spear - copia (4).png'
+        if(mouseX < playerPosX && mouseY > playerPosY - playerPosY / 2 && mouseY < playerPosY + playerPosY / 2){
+            this.image.src = "./images/SpearLeftt.png"
+        }else if(mouseX > playerPosX && mouseY > playerPosY - playerPosY / 2 && mouseY < playerPosY + playerPosY / 2) {
+            this.image.src = "./images/SpearRight.png"
+        }else if(mouseY < playerPosY){
+            this.image.src = "./images/SpearUp.png"
+            this.w = 20;
+            this.h = 60;
+        }else if(mouseY > playerPosY){
+            this.image.src = "./images/SpearDown.png"
+            this.w = 20;
+            this.h = 60;
         }
-            
+      
     }
 
     // METHODS
@@ -45,18 +47,5 @@ class Spear {
         if(this.y >= this.mouseY) {
             this.y -= this.speed;
         }
-    }
-    // spear related to bg
-    moveSpearUp = () => {
-        this.y += (this.spearbgSpeed);
-    }
-    moveSpearDown = () => {
-        this.y -= (this.spearbgSpeed);
-    }
-    moveSpearLeft = () => {
-        this.x += (this.spearbgSpeed);
-    }
-    moveSpearRight = () => {
-        this.x -= (this.spearbgSpeed);
     }
 }

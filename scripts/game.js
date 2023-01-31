@@ -29,8 +29,8 @@ class Game {
         if(this.enemiesArr === 0 || this.frames % randomFrame === 0) {
             let randomPosX = Math.random() * (this.bg.w - (this.bg.x)) + (this.bg.x);
             let randomPosY = Math.random() * (this.bg.h - (this.bg.y)) + (this.bg.y);
-            let randomSpeed = Math.random() * (2 - 1) + 1;
-            let randomBgSpeed = Math.random() * (10 - 5) + 5;
+            let randomSpeed = Math.random() * (5 - 1) + 1;
+            let randomBgSpeed = Math.random() * (15 - 5) + 5;
 
             let enemy = new Enemies (randomPosX, randomPosY, randomSpeed, randomBgSpeed, this.caveWoman.x, this.caveWoman.y);
             this.enemiesArr.push(enemy);
@@ -72,40 +72,35 @@ class Game {
                 this.controller[key].functionBg();
                 this.controller[key].functionEnemy();
             }
-            // this.controller[key].pressed && this.controller[key].functionBg && this.controller[key].functionEnemy
         })
     }
+    
     enemiesRelatedToBgUp = () => {
         this.enemiesArr.forEach((enemy) => {
                 //UP
-        
-            enemy.moveEnemyUp();
-        
-       })
+        enemy.moveEnemyUp();
+        })
     }
+    
     enemiesRelatedToBgDown = () => {
         this.enemiesArr.forEach((enemy) => {
                 //DOWN
-        
-            enemy.moveEnemyDown();
-        
-       })
+        enemy.moveEnemyDown();
+        })
     }
+        
     enemiesRelatedToBgLeft = () => {
         this.enemiesArr.forEach((enemy) => {
                 //LEFT
-        
             enemy.moveEnemyLeft();
-        
-       })
+        })
     }
+        
     enemiesRelatedToBgRight = () => {
         this.enemiesArr.forEach((enemy) => {
                 //RIGHT
-        
-            enemy.moveEnemyRight();
-        
-       })
+        enemy.moveEnemyRight();
+        })
     }
 
     //colissions
@@ -118,7 +113,7 @@ class Game {
                 spear.h + spear.y > enemy.y){
                 this.enemiesArr.splice(index, 1)
                 this.spearsArr.splice(spearIndex, 1)
-                console.log("enemigo asesinado");
+                // console.log("enemigo asesinado");
             } 
            })
         });
@@ -131,19 +126,31 @@ class Game {
                 enemy.y < this.caveWoman.y + this.caveWoman.h &&
                 enemy.h + enemy.y > this.caveWoman.y && this.frames % 30 === 0) {
                     this.caveWoman.health--;
-                    hearts.forEach(() => {
-                        if(this.caveWoman.health === this.caveWoman.health - 1){
-                            let heart = hearts.slice(hearts.length-1, hearts.length-2);
-                            heart.style.display = 'none';
-                           }
-                    })
-                
                     console.log(this.caveWoman.health)
                 }
+                    
             if (this.caveWoman.health === 0){
                 this.gameOver()
             }
         })
+    }
+
+    bgPlayerColission = () => {
+        if(this.bg.x > this.caveWoman.x ){
+            
+            this.bg.moveBgRight()
+        }
+        if(this.bg.x + (this.bg.w + canvas.width) < this.caveWoman.x + this.caveWoman.w){
+            
+            this.bg.moveBgLeft()
+        }
+        if(this.bg.y > this.caveWoman.y){
+            this.bg.moveBgDown()
+            console.log("colision")
+        }
+        if (this.bg.y + (this.bg.h + canvas.height) < this.caveWoman.y + this.caveWoman.h) {
+            this.bg.moveBgUp()
+        }
     }
 
     gameOver = () => {
@@ -153,8 +160,6 @@ class Game {
         lives.style.display = 'none';
     }
             
-    
-
     gameLoop = () => {
 
         this.frames++
@@ -175,6 +180,7 @@ class Game {
         this.throwAllSpears();
         this.spearEnemyColission();
         this.enemyPlayerColission();
+        this.bgPlayerColission();
         
 
         //4. recursion control

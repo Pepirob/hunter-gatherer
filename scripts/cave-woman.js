@@ -1,4 +1,4 @@
-console.log(hearts)
+console.log()
 class CaveWoman {
     constructor() {
         this.x = 375;

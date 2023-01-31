@@ -10,11 +10,7 @@ const lives = document.querySelector('#lives');
 const hearts = document.querySelectorAll(".heart");
 
 let game;
-//Checking if keys are pressed
-let wKey = false;
-let dKey = false;
-let aKey = false;
-let sKey = false;
+
 
 // EVENT FUNCTIONS
 
@@ -44,7 +40,6 @@ const startGame = () => {
 //Checking if keys are pressed
 const keyDownCheck = (event) => {
     if(game.controller[event.code]){
-        // console.log("presionando")
         game.controller[event.code].pressed = true
     }
 }
@@ -73,8 +68,6 @@ const spearMechanic = (event) => {
         setTimeout(() => {
             game.spearsArr.splice(0, 1)
         }, 500);}
-    
-    // console.log("x: " + x + " y: " + y);
 }
 
 // ADDEVENTLISTENERS

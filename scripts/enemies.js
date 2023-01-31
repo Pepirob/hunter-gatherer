@@ -26,7 +26,7 @@ class Enemies {
         if(this.x > this.playerPosX) {
             this.x -= this.enemySpeed;
         } 
-        if(this.y < this.playerPosY5) {
+        if(this.y < this.playerPosY) {
             this.y += this.enemySpeed;
         }
         if(this.y > this.playerPosY) {
