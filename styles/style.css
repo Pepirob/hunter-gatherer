@@ -31,3 +31,14 @@ body {
   #gameover-screen {
     display: none; /* no muestres este elemento en el DOM */
   }
+
+  #lives {
+    display: none;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+  }
+
+  .heart {
+    width: 40px;
+  }

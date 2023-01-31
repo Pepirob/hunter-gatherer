@@ -1,11 +1,13 @@
 class Enemies {
-    constructor (posX, posY, speed, bgSpeed) {
+    constructor (posX, posY, speed, bgSpeed, playerPosX, playerPosY) {
         this.x = posX;
         this.y = posY;
         this.w = 60;
         this.h = 60;
         this.enemySpeed = speed;
         this.enemyBgSpeed = bgSpeed;
+        this.playerPosX = playerPosX;
+        this.playerPosY = playerPosY;
     }
 
     //METHODS
@@ -18,16 +20,16 @@ class Enemies {
     // Moving 
     // enemy towards player
     moveEnemyToCenter = () => {
-        if(this.x < 275) {
+        if(this.x < this.playerPosX) {
             this.x += this.enemySpeed;
         } 
-        if(this.x > 275) {
+        if(this.x > this.playerPosX) {
             this.x -= this.enemySpeed;
         } 
-        if(this.y < 225) {
+        if(this.y < this.playerPosY5) {
             this.y += this.enemySpeed;
         }
-        if(this.y > 225) {
+        if(this.y > this.playerPosY) {
             this.y -= this.enemySpeed;
         }
     }

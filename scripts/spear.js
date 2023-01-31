@@ -1,22 +1,35 @@
 class Spear {
-    constructor (mouseX, mouseY) {
-        this.x = 255;
-        this.y = 235;
+    constructor (mouseX, mouseY, playerPosX, playerPosY) {
+        this.x = playerPosX;
+        this.y = playerPosY;
         this.w = 60;
-        this.h = 8;
+        this.h = 20;
         this.speed = 8;
         this.spearbgSpeed = 15;
         //mouse possition
         this.isSpearOn = true;
         this.mouseX = mouseX;
         this.mouseY = mouseY;
+        this.image = new Image();
+        if(this.mouseX < 300) {
+            this.image.src = './images/Spear - copia.png'
+        } else if (this.mouseX > 300){
+            this.image.src = './images/Spear - copia (2).png'
+        } 
+          else if (this.mouseY > 250){
+            this.image.src = '../images/Spear - copia (3).png'
+        } 
+        else if (this.mouseY < 250){
+            this.image.src = '../images/Spear - copia (4).png'
+        }
+            
     }
 
     // METHODS
 
     drawSpear = () => {
-        ctx.fillStyle = 'brown';
-        ctx.fillRect(this.x, this.y, this.w, this.h)
+        
+        ctx.drawImage(this.image, this.x, this.y, this.w, this.h)
     }
     //spear throwing movement
     throwSpear = () => {

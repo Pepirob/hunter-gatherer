@@ -1,7 +1,8 @@
+console.log(hearts)
 class CaveWoman {
     constructor() {
-        this.x = 275;
-        this.y = 225;
+        this.x = 375;
+        this.y = 275;
         this.w = 50;
         this.h = 50;
         this.health = 5;

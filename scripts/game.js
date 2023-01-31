@@ -3,7 +3,6 @@ class Game {
     constructor () {
         this.bg = new Background();
         this.caveWoman = new CaveWoman();
-        this.enemy = new Enemies();
         this.spear = new Spear();
         this.enemiesArr = [];
         this.spearsArr = [];
@@ -27,7 +26,7 @@ class Game {
             let randomSpeed = Math.random() * (2 - 1) + 1;
             let randomBgSpeed = Math.random() * (10 - 5) + 5;
 
-            let enemy = new Enemies (randomPosX, randomPosY, randomSpeed, randomBgSpeed);
+            let enemy = new Enemies (randomPosX, randomPosY, randomSpeed, randomBgSpeed, this.caveWoman.x, this.caveWoman.y);
             this.enemiesArr.push(enemy);
             console.log("hay un enemigo");
         }
@@ -79,10 +78,28 @@ class Game {
             if (enemy.x < this.caveWoman.x + this.caveWoman.w &&
                 enemy.x + enemy.w > this.caveWoman.x &&
                 enemy.y < this.caveWoman.y + this.caveWoman.h &&
-                enemy.h + enemy.y > this.caveWoman.y ) {
-                    console.log("contact");
+                enemy.h + enemy.y > this.caveWoman.y && this.frames % 30 === 0) {
+                    this.caveWoman.health--;
+                    hearts.forEach(() => {
+                        if(this.caveWoman.health === this.caveWoman.health - 1){
+                            let heart = hearts.slice(hearts.length-1, hearts.length-2);
+                            heart.style.display = 'none';
+                           }
+                    })
+                
+                    console.log(this.caveWoman.health)
                 }
+            if (this.caveWoman.health === 0){
+                this.gameOver()
+            }
         })
+    }
+
+    gameOver = () => {
+        this.isGameOn = false;
+        canvas.style.display = "none";
+        gameoverScreen.style.display = "flex";
+        lives.style.display = 'none';
     }
             
     
@@ -111,11 +128,13 @@ class Game {
 
         //4. recursion control
 
-        requestAnimationFrame(this.gameLoop);
-          
-
+        if (this.isGameOn === true){
+            requestAnimationFrame(this.gameLoop)
+        }
     }
 }
+          
+
    
 
     

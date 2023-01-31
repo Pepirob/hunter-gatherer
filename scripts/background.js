@@ -29,21 +29,21 @@ class Background {
         this.x -= this.bgSpeed;
     }
     // Moving diagonal
-    moveBgUpRight = () => {
-        this.x -= this.bgSpeed;
-        this.y += this.bgSpeed;
-    }
-    moveBgDownRight = () => {
-        this.x -= this.bgSpeed;
-        this.y -= this.bgSpeed;
-    }
-    moveBgUpLeft = () => {
-        this.x += this.bgSpeed;
-        this.y += this.bgSpeed
-    }
-    moveBgDownLeft = () => {
-        this.x += this.bgSpeed;
-        this.y -= this.bgSpeed;
-    }
+    // moveBgUpRight = () => {
+    //     this.x -= this.bgSpeed;
+    //     this.y += this.bgSpeed;
+    // }
+    // moveBgDownRight = () => {
+    //     this.x -= this.bgSpeed;
+    //     this.y -= this.bgSpeed;
+    // }
+    // moveBgUpLeft = () => {
+    //     this.x += this.bgSpeed;
+    //     this.y += this.bgSpeed
+    // }
+    // moveBgDownLeft = () => {
+    //     this.x += this.bgSpeed;
+    //     this.y -= this.bgSpeed;
+    // }
 
 }
