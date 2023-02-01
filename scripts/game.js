@@ -4,6 +4,7 @@ class Game {
         this.bg = new Background();
         this.caveWoman = new CaveWoman();
         this.spear = new Spear();
+        this.health = new Health ();
         this.enemiesArr = [];
         this.spearsArr = [];
         this.isGameOn = true;
@@ -44,11 +45,7 @@ class Game {
         });
     }
 
-    allEnemiesMoves = () => {
-       this.enemiesArr.forEach((enemy) => {
-        enemy.moveEnemyToCenter();
-       })
-    }
+   
 
     drawAllSpears = () => {
         this.spearsArr.forEach((spear) => {
@@ -56,12 +53,19 @@ class Game {
         });
     }
 
-    throwAllSpears = () => {
-        this.spearsArr.forEach((spear) => {
-            spear.throwSpear();
-        });
-        
+    drawHealth = () => {
+        for (let i = 0; i < this.health.health; i++){
+            let x = this.health.x + i * (this.health.w + (this.health.x / 2));
+            
+
+        if (this.caveWoman.health >= i + 1){
+            this.health.drawHeart(x);
+        } else {
+            this.health.drawVoidHeart(x);
+         }
+        }
     }
+    
 
     // Movement
     movement = () => {
@@ -101,6 +105,19 @@ class Game {
                 //RIGHT
         enemy.moveEnemyRight();
         })
+    }
+
+    allEnemiesMoves = () => {
+        this.enemiesArr.forEach((enemy) => {
+         enemy.moveEnemyToCenter();
+        })
+     }
+
+    throwAllSpears = () => {
+        this.spearsArr.forEach((spear) => {
+            spear.throwSpear();
+        });
+        
     }
 
     //colissions
@@ -173,6 +190,7 @@ class Game {
         this.spawningEnemies();
         this.drawAllEnemies();
         this.drawAllSpears();
+        this.drawHealth();
 
         //3. actions
         this.movement();
