@@ -31,9 +31,7 @@ class Background {
         })
         game.treesArr.forEach((tree) => {
             tree.y += (this.bgSpeed);
-        })
-        game.berriesArr.forEach((berry) => {
-            berry.y += (this.bgSpeed);
+            tree.berryY += (this.bgSpeed);
         })
     }
     moveBgDown = () => {
@@ -44,10 +42,7 @@ class Background {
         });
         game.treesArr.forEach((tree) => {
             tree.y -= (this.bgSpeed);
-        })
-        game.berriesArr.forEach((berry) => {
-            berry.y -= (this.bgSpeed);
-            
+            tree.berryY -= (this.bgSpeed);
         })
     }
     moveBgLeft = () => {
@@ -58,9 +53,7 @@ class Background {
         });
         game.treesArr.forEach((tree) => {
             tree.x += (this.bgSpeed);
-        })
-        game.berriesArr.forEach((berry) => {
-            berry.x += (this.bgSpeed);
+            tree.berryX += (this.bgSpeed);
         })
     }
     moveBgRight = () => {
@@ -71,9 +64,7 @@ class Background {
         });
         game.treesArr.forEach((tree) => {
             tree.x -= (this.bgSpeed);
-        })
-        game.berriesArr.forEach((berry) => {
-            berry.x -= (this.bgSpeed);
+            tree.berryX -= (this.bgSpeed);
         })
     }
     

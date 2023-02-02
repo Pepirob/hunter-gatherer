@@ -8,6 +8,13 @@ class Trees {
         this.image.src = './images/tree1.png'
         this.image2 = new Image ();
         this.image2.src = './images/tree2.png'
+        this.isBerryOn = true;
+        this.berryX = posX + 20;
+        this.berryY = posY + 35;
+        this.berryW = 30;
+        this.berryH = 30;
+        this.berryImage = new Image ();
+        this.berryImage.src = './images/cranberry.png'
     }
 
     // METHODS 
@@ -19,21 +26,8 @@ class Trees {
             ctx.drawImage(this.image2, this.x, this.y, this.w, this.h)
         }
     }
-    
-}
-
-class Berries {
-    constructor (posX, posY) {
-        this.x = posX + 20;
-        this.y = posY + 35;
-        this.w = 30;
-        this.h = 30;
-        this.berryImage = new Image ();
-        this.berryImage.src = './images/cranberry.png'
-    }
-
     drawBerry = () => {
-        ctx.drawImage(this.berryImage, this.x, this.y, this.w, this.h)
+        if (this.isBerryOn === true)
+        ctx.drawImage(this.berryImage, this.berryX, this.berryY, this.berryW, this.berryH)
     }
-
 }
