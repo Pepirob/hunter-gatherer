@@ -3,13 +3,19 @@ class Game {
     constructor () {
         this.bg = new Background();
         this.caveWoman = new CaveWoman();
-        this.spear = new Spear();
         this.health = new Health ();
-        this.enemy = new Enemies();
+        this.spear = new Spear();
         this.enemiesArr = [];
         this.spearsArr = [];
+        this.treesArr = [];
+        this.berriesArr = [];
         this.isGameOn = true;
         this.frames = 1;
+
+        // Randomizers
+        this.randomPosX =  (Math.random() * (this.bg.w - this.bg.x)) + this.bg.x;
+        this.randomPosY =  (Math.random() * (this.bg.h - this.bg.y)) + this.bg.y;
+       
         //movement property
         this.controller = {
             KeyW: {pressed: false, functionBg: this.bg.moveBgUp},
@@ -29,14 +35,14 @@ class Game {
         let randomFrame = Math.floor(Math.random() * 1200 + 1)
 
         if(this.enemiesArr === 0 || this.frames % randomFrame === 0) {
-            let randomPosX = Math.random() * (this.bg.w - (this.bg.x)) + (this.bg.x);
-            let randomPosY = Math.random() * (this.bg.h - (this.bg.y)) + (this.bg.y);
             let randomSpeed = Math.random() * (5 - 1) + 1;
             let randomBgSpeed = Math.random() * (10 - 5) + 5;
 
-            let enemy = new Enemies (randomPosX, randomPosY, randomSpeed, randomBgSpeed, this.caveWoman.x, this.caveWoman.y);
+            let enemy = new Enemies (this.randomPosX, this.randomPosY, randomSpeed, randomBgSpeed, this.caveWoman.x, this.caveWoman.y);
+           
+            
             this.enemiesArr.push(enemy);
-            console.log("hay un enemigo");
+            // console.log("hay un enemigo");
         }
     }
 
@@ -46,7 +52,32 @@ class Game {
         });
     }
 
-   
+    spawningTreesBerries = () => {
+        
+       
+        if (this.treesArr.length === 0){
+            let maxTrees = 20;
+            for (let i = 0; i < maxTrees; i++){
+                let randomPosX =  (Math.random() * (this.bg.w - this.bg.x)) + this.bg.x;
+                let randomPosY =  (Math.random() * (this.bg.h - this.bg.y)) + this.bg.y;
+                let tree = new Trees (randomPosX, randomPosY);
+                let berry = new Berries (randomPosX, randomPosY);
+                this.treesArr.push(tree);
+                this.berriesArr.push(berry);
+                console.log ('tree spawned');
+            }
+        }
+    }
+
+    drawAllTreesBerries = () => {
+        this.treesArr.forEach((tree) => {
+            // console.log(tree.x, tree.y)
+            tree.drawTree (this.frames);
+        });
+        this.berriesArr.forEach((berry) => {
+            berry.drawBerry();
+        })
+    }
 
     drawAllSpears = () => {
         this.spearsArr.forEach((spear) => {
@@ -59,7 +90,6 @@ class Game {
         for (let i = 0; i < this.health.health; i++){
             let x = this.health.x + i * (this.health.w + (this.health.x / 2));
             
-
         if (this.caveWoman.health >= i + 1){
             this.health.drawHeart(x);
             
@@ -116,7 +146,7 @@ class Game {
                 enemy.x + enemy.w > this.caveWoman.x &&
                 enemy.y < this.caveWoman.y + this.caveWoman.h &&
                 enemy.h + enemy.y > this.caveWoman.y && this.frames % 30 === 0) {
-                    this.caveWoman.health--;
+                    this.caveWoman.health -= 1;
                     console.log(this.caveWoman.health)
                 }
                     
@@ -141,11 +171,32 @@ class Game {
         }
     }
 
+    berryPlayerColission = () => {
+        this.berriesArr.forEach((berry, index) => {
+            if (berry.x < this.caveWoman.x + this.caveWoman.w &&
+                berry.x + berry.w > this.caveWoman.x &&
+                berry.y < this.caveWoman.y + this.caveWoman.h &&
+                berry.h + berry.y > this.caveWoman.y) {
+                    // console.log ('berry colission')
+                    this.caveWoman.health += 1;
+                    this.berriesArr.splice(index, 1)
+                    setTimeout(() => {
+                        console.log('settimeout')
+                        let newBerry = new Berries(berry.x, berry.y);
+                        console.log(newBerry.x, newBerry.y)
+                        this.berriesArr.push(newBerry);
+                    }, 5000);
+                }
+              
+            }) 
+               
+                
+    }
+
     gameOver = () => {
         this.isGameOn = false;
         canvas.style.display = "none";
         gameoverScreen.style.display = "flex";
-        lives.style.display = 'none';
     }
             
     gameLoop = () => {
@@ -160,6 +211,8 @@ class Game {
         this.caveWoman.drawCaveWoman(this.controller, this.frames);
         this.spawningEnemies();
         this.drawAllEnemies();
+        this.spawningTreesBerries();
+        this.drawAllTreesBerries();
         this.drawAllSpears();
         this.drawHealth();
         
@@ -171,6 +224,7 @@ class Game {
         this.spearEnemyColission();
         this.enemyPlayerColission();
         this.bgPlayerColission();
+        this.berryPlayerColission();
         
 
         //4. recursion control

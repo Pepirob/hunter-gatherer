@@ -6,8 +6,8 @@ const ctx = canvas.getContext('2d');
 const startScreen = document.querySelector("#start-screen");
 const gameoverScreen = document.querySelector('#gameover-screen');
 const restartBtn = document.querySelector("#restart-btn");
-const lives = document.querySelector('#lives');
-const hearts = document.querySelectorAll(".heart");
+
+
 
 let game;
 
@@ -20,8 +20,6 @@ const startGame = () => {
     startScreen.style.display = "none";
 
     canvas.style.display = 'flex';
-
-    lives.style.display = 'flex';
 
     gameoverScreen.style.display = 'none';
 
@@ -57,7 +55,7 @@ const spearMechanic = (event) => {
     const rect = canvas.getBoundingClientRect()
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
-    if (x > (canvas.width /2)){
+    if (x > (canvas.width / 2)){
         let spear = new Spear (x - game.spear.w, y, game.caveWoman.x, game.caveWoman.y);
         game.spearsArr.push(spear);
         setTimeout(() => {

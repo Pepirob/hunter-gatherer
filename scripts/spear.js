@@ -7,7 +7,6 @@ class Spear {
         this.speed = 8;
         this.spearbgSpeed = 15;
         //mouse possition
-        this.isSpearOn = true;
         this.mouseX = mouseX;
         this.mouseY = mouseY;
         this.image = new Image();

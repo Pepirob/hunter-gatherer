@@ -29,12 +29,25 @@ class Background {
         game.enemiesArr.forEach((enemy) => {
             enemy.y += (enemy.enemyBgSpeed);
         })
+        game.treesArr.forEach((tree) => {
+            tree.y += (this.bgSpeed);
+        })
+        game.berriesArr.forEach((berry) => {
+            berry.y += (this.bgSpeed);
+        })
     }
     moveBgDown = () => {
         this.y -= this.bgSpeed;
         this.bonfireY -= this.bgSpeed;
         game.enemiesArr.forEach((enemy) => {
             enemy.y -= (enemy.enemyBgSpeed);
+        });
+        game.treesArr.forEach((tree) => {
+            tree.y -= (this.bgSpeed);
+        })
+        game.berriesArr.forEach((berry) => {
+            berry.y -= (this.bgSpeed);
+            
         })
     }
     moveBgLeft = () => {
@@ -42,6 +55,12 @@ class Background {
         this.bonfireX += this.bgSpeed;
         game.enemiesArr.forEach((enemy) => {
             enemy.x += (enemy.enemyBgSpeed);
+        });
+        game.treesArr.forEach((tree) => {
+            tree.x += (this.bgSpeed);
+        })
+        game.berriesArr.forEach((berry) => {
+            berry.x += (this.bgSpeed);
         })
     }
     moveBgRight = () => {
@@ -49,6 +68,12 @@ class Background {
         this.bonfireX -= this.bgSpeed;
         game.enemiesArr.forEach((enemy) => {
             enemy.x -= (enemy.enemyBgSpeed);
+        });
+        game.treesArr.forEach((tree) => {
+            tree.x -= (this.bgSpeed);
+        })
+        game.berriesArr.forEach((berry) => {
+            berry.x -= (this.bgSpeed);
         })
     }
     

@@ -1,6 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Moo+Lah+Lah&display=swap');
+
 body {
     margin: 0;
     background-color: lightgray;
+    background-image: url('../images/html-background.jpg');
+    background-size: cover;
+  }
+
+  #start-screen h1{
+    font-family: 'Moo Lah Lah', cursive;
+    font-size: 5em;
+    text-align: center;
   }
   
   #my-canvas {
