@@ -1,32 +1,55 @@
 class Background {
     constructor() {
         this.bg = new Image()
-        this.bg.src = './images/image.webp'
-        this.x = -1600;
-        this.y = -1600;
-        this.w = 3200;
-        this.h = 3000;
-        this.bgSpeed = 10;
+        this.bg.src = '../images/grassland.png'
+        this.x = -950;
+        this.y = -1050;
+        this.w = 2700;
+        this.h = 2700;
+        this.bgSpeed = 6;
+        this.bonFireImage = new Image()
+        this.bonFireImage.src = './images/Bonfire_1.png';
+        this.bonfireX = 350;
+        this.bonfireY = 283;
+        this.bonfireW = 100;
+        this.bonfireH = 120;
     }
 
     //METHODS
     //Drawing
     drawBg = () => {
-        ctx.drawImage(this.bg, this.x, this.y, canvas.width + this.w, canvas.height + this.h);
+        ctx.drawImage(this.bg, this.x, this.y, this.w, this.h);
+        ctx.drawImage(this.bonFireImage, this.bonfireX , this.bonfireY, this.bonfireW, this.bonfireH)
     }
     
     //moving
     moveBgUp = () => {
         this.y += this.bgSpeed;
+        this.bonfireY += this.bgSpeed;
+        game.enemiesArr.forEach((enemy) => {
+            enemy.y += (enemy.enemyBgSpeed);
+        })
     }
     moveBgDown = () => {
         this.y -= this.bgSpeed;
+        this.bonfireY -= this.bgSpeed;
+        game.enemiesArr.forEach((enemy) => {
+            enemy.y -= (enemy.enemyBgSpeed);
+        })
     }
     moveBgLeft = () => {
         this.x += this.bgSpeed;
+        this.bonfireX += this.bgSpeed;
+        game.enemiesArr.forEach((enemy) => {
+            enemy.x += (enemy.enemyBgSpeed);
+        })
     }
     moveBgRight = () => {
         this.x -= this.bgSpeed;
+        this.bonfireX -= this.bgSpeed;
+        game.enemiesArr.forEach((enemy) => {
+            enemy.x -= (enemy.enemyBgSpeed);
+        })
     }
-
+    
 }

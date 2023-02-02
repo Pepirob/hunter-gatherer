@@ -5,16 +5,17 @@ class Game {
         this.caveWoman = new CaveWoman();
         this.spear = new Spear();
         this.health = new Health ();
+        this.enemy = new Enemies();
         this.enemiesArr = [];
         this.spearsArr = [];
         this.isGameOn = true;
         this.frames = 1;
         //movement property
         this.controller = {
-            KeyW: {pressed: false, functionBg: this.bg.moveBgUp, functionEnemy: this.enemiesRelatedToBgUp},
-            KeyS: {pressed: false, functionBg: this.bg.moveBgDown, functionEnemy: this.enemiesRelatedToBgDown},
-            KeyA: {pressed: false, functionBg: this.bg.moveBgLeft, functionEnemy: this.enemiesRelatedToBgLeft},
-            KeyD: {pressed: false, functionBg: this.bg.moveBgRight, functionEnemy: this.enemiesRelatedToBgRight}
+            KeyW: {pressed: false, functionBg: this.bg.moveBgUp},
+            KeyS: {pressed: false, functionBg: this.bg.moveBgDown},
+            KeyA: {pressed: false, functionBg: this.bg.moveBgLeft },
+            KeyD: {pressed: false, functionBg: this.bg.moveBgRight}
         }
     }
 
@@ -31,7 +32,7 @@ class Game {
             let randomPosX = Math.random() * (this.bg.w - (this.bg.x)) + (this.bg.x);
             let randomPosY = Math.random() * (this.bg.h - (this.bg.y)) + (this.bg.y);
             let randomSpeed = Math.random() * (5 - 1) + 1;
-            let randomBgSpeed = Math.random() * (15 - 5) + 5;
+            let randomBgSpeed = Math.random() * (10 - 5) + 5;
 
             let enemy = new Enemies (randomPosX, randomPosY, randomSpeed, randomBgSpeed, this.caveWoman.x, this.caveWoman.y);
             this.enemiesArr.push(enemy);
@@ -54,12 +55,14 @@ class Game {
     }
 
     drawHealth = () => {
+        
         for (let i = 0; i < this.health.health; i++){
             let x = this.health.x + i * (this.health.w + (this.health.x / 2));
             
 
         if (this.caveWoman.health >= i + 1){
             this.health.drawHeart(x);
+            
         } else {
             this.health.drawVoidHeart(x);
          }
@@ -74,39 +77,10 @@ class Game {
             if(this.controller[key].pressed === true){
                 // console.log("presionando")
                 this.controller[key].functionBg();
-                this.controller[key].functionEnemy();
             }
         })
     }
     
-    enemiesRelatedToBgUp = () => {
-        this.enemiesArr.forEach((enemy) => {
-                //UP
-        enemy.moveEnemyUp();
-        })
-    }
-    
-    enemiesRelatedToBgDown = () => {
-        this.enemiesArr.forEach((enemy) => {
-                //DOWN
-        enemy.moveEnemyDown();
-        })
-    }
-        
-    enemiesRelatedToBgLeft = () => {
-        this.enemiesArr.forEach((enemy) => {
-                //LEFT
-            enemy.moveEnemyLeft();
-        })
-    }
-        
-    enemiesRelatedToBgRight = () => {
-        this.enemiesArr.forEach((enemy) => {
-                //RIGHT
-        enemy.moveEnemyRight();
-        })
-    }
-
     allEnemiesMoves = () => {
         this.enemiesArr.forEach((enemy) => {
          enemy.moveEnemyToCenter();
@@ -153,19 +127,16 @@ class Game {
     }
 
     bgPlayerColission = () => {
-        if(this.bg.x > this.caveWoman.x ){
-            
-            this.bg.moveBgRight()
+        if(this.bg.x > (this.caveWoman.x )){
+            this.bg.moveBgRight();
         }
-        if(this.bg.x + (this.bg.w + canvas.width) < this.caveWoman.x + this.caveWoman.w){
-            
-            this.bg.moveBgLeft()
+        if((this.bg.x ) + (this.bg.w ) < this.caveWoman.x + this.caveWoman.w){
+            this.bg.moveBgLeft()    
         }
         if(this.bg.y > this.caveWoman.y){
-            this.bg.moveBgDown()
-            console.log("colision")
+            this.bg.moveBgDown()    
         }
-        if (this.bg.y + (this.bg.h + canvas.height) < this.caveWoman.y + this.caveWoman.h) {
+        if (this.bg.y + (this.bg.h) < this.caveWoman.y + this.caveWoman.h) {
             this.bg.moveBgUp()
         }
     }
@@ -186,11 +157,12 @@ class Game {
 
         //2. drawings
         this.bg.drawBg();
-        this.caveWoman.drawCaveWoman();
+        this.caveWoman.drawCaveWoman(this.controller, this.frames);
         this.spawningEnemies();
         this.drawAllEnemies();
         this.drawAllSpears();
         this.drawHealth();
+        
 
         //3. actions
         this.movement();

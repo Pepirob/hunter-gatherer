@@ -2,19 +2,25 @@ class Enemies {
     constructor (posX, posY, speed, bgSpeed, playerPosX, playerPosY) {
         this.x = posX;
         this.y = posY;
-        this.w = 60;
+        this.w = 100;
         this.h = 60;
         this.enemySpeed = speed;
         this.enemyBgSpeed = bgSpeed;
         this.playerPosX = playerPosX;
         this.playerPosY = playerPosY;
+        this.image = new Image();
+        this.image.src = './images/animal.png'
+        this.invertedImage = new Image ();
+        this.invertedImage.src = './images/animal-inverted.png'
     }
 
     //METHODS
 
     drawEnemy = () => {
-        ctx.fillStyle = 'yellow';
-        ctx.fillRect(this.x, this.y, this.w, this.h);
+        if(this.x > game.caveWoman.x){
+            ctx.drawImage(this.invertedImage, this.x, this.y, this.w, this.h);
+        }else {ctx.drawImage(this.image, this.x, this.y, this.w, this.h);}
+        
     }
 
     // Moving 
@@ -33,21 +39,6 @@ class Enemies {
             this.y -= this.enemySpeed;
         }
     }
-
-    // enemy's movement related to the background;
-    moveEnemyUp = () => {
-        this.y += (this.enemyBgSpeed);
-    }
-    moveEnemyDown = () => {
-        this.y -= (this.enemyBgSpeed);
-    }
-    moveEnemyLeft = () => {
-        this.x += (this.enemyBgSpeed);
-    }
-    moveEnemyRight = () => {
-        this.x -= (this.enemyBgSpeed);
-    }
-
 }
     
     

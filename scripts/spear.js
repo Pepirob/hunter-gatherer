@@ -19,7 +19,7 @@ class Spear {
             this.image.src = "./images/SpearUp.png"
             this.w = 20;
             this.h = 60;
-        }else if(mouseY > playerPosY){
+        }else {
             this.image.src = "./images/SpearDown.png"
             this.w = 20;
             this.h = 60;
