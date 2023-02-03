@@ -22,7 +22,7 @@ class Background {
     drawBg = () => {
         ctx.drawImage(this.bg, this.x, this.y, this.w, this.h);
         ctx.drawImage(this.bonFireImage, this.bonfireX , this.bonfireY, this.bonfireW, this.bonfireH)
-        // ctx.drawImage(this.caveImage, this.bonfireX - 140, this.bonfireY - 140, this.bonfireW + 100, this.bonfireH + 100)
+        ctx.drawImage(this.caveImage, this.bonfireX - 140, this.bonfireY - 140, this.bonfireW + 100, this.bonfireH + 100)
     }
     
     //moving

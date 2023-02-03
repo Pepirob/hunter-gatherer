@@ -4,7 +4,7 @@ class Spear {
         this.y = playerPosY;
         this.w = 80;
         this.h = 20;
-        this.speed = 8;
+        this.speed = 10;
         this.spearbgSpeed = 15;
         //mouse possition
         this.mouseX = mouseX;

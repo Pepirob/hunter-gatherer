@@ -18,6 +18,11 @@ class Game {
             KeyA: {pressed: false, functionBg: this.bg.moveBgLeft },
             KeyD: {pressed: false, functionBg: this.bg.moveBgRight}
         }
+
+        // Sound
+        this.backgroundSong = new Audio ();
+        this.backgroundSong.src = './sound/Aloha.m4a'
+        this.backgroundSong.volume = 0.05;
     }
 
 
@@ -53,7 +58,7 @@ class Game {
 
     spawningTrees = () => {
          if (this.treesArr.length === 0){
-            let maxTrees = 20;
+            let maxTrees = 15;
             for (let i = 0; i < maxTrees; i++){
                 let randomPosX =  (Math.random() * ((this.bg.w / 2) - this.bg.x / 2)) + (this.bg.x /2);
                 let randomPosY =  (Math.random() * ((this.bg.h / 2) - this.bg.y / 2)) + (this.bg.y /2);
@@ -191,6 +196,7 @@ class Game {
     }
 
     gameOver = () => {
+        this.backgroundSong.pause();
         this.isGameOn = false;
         canvas.style.display = "none";
         gameoverScreen.style.display = "flex";
@@ -200,6 +206,8 @@ class Game {
     gameLoop = () => {
 
         this.frames++
+
+        this.backgroundSong.play();
 
         //1. clean canvas
         this.clearCanvas();
