@@ -2,7 +2,7 @@ class Spear {
     constructor (mouseX, mouseY, playerPosX, playerPosY) {
         this.x = playerPosX;
         this.y = playerPosY;
-        this.w = 60;
+        this.w = 80;
         this.h = 20;
         this.speed = 8;
         this.spearbgSpeed = 15;
@@ -17,11 +17,11 @@ class Spear {
         }else if(mouseY < playerPosY){
             this.image.src = "./images/SpearUp.png"
             this.w = 20;
-            this.h = 60;
+            this.h = 80;
         }else {
             this.image.src = "./images/SpearDown.png"
             this.w = 20;
-            this.h = 60;
+            this.h = 80;
         }
       
     }

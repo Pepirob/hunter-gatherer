@@ -10,11 +10,7 @@ class Game {
         this.treesArr = [];
         this.isGameOn = true;
         this.frames = 1;
-
-        // Randomizers
-        this.randomPosX =  (Math.random() * (this.bg.w - this.bg.x)) + this.bg.x;
-        this.randomPosY =  (Math.random() * (this.bg.h - this.bg.y)) + this.bg.y;
-       
+        this.score = 0;
         //movement property
         this.controller = {
             KeyW: {pressed: false, functionBg: this.bg.moveBgUp},
@@ -34,20 +30,24 @@ class Game {
         let randomFrame = Math.floor(Math.random() * 1200 + 1)
 
         if(this.enemiesArr === 0 || this.frames % randomFrame === 0) {
-            let randomSpeed = Math.random() * (5 - 1) + 1;
-            let randomBgSpeed = Math.random() * (10 - 5) + 5;
-
-            let enemy = new Enemies (this.randomPosX, this.randomPosY, randomSpeed, randomBgSpeed, this.caveWoman.x, this.caveWoman.y);
+            for (let i = 0; i < 2; i++) {
+                let randomSpeed = Math.random() * (11 - 6) + 1;
+                let randomBgSpeed = Math.random() * (8 - 5) + 5;
+                let randomPosX =  (Math.random() * (this.bg.w - this.bg.x)) + this.bg.x;
+                let randomPosY =  (Math.random() * (this.bg.h - this.bg.y)) + this.bg.y;
+                let enemy = new Enemies (randomPosX, randomPosY, randomSpeed, randomBgSpeed, this.caveWoman.x, this.caveWoman.y);
            
             
-            this.enemiesArr.push(enemy);
-            // console.log("hay un enemigo");
+                this.enemiesArr.push(enemy);
+            
+                console.log(enemy.x, enemy.y);
+            }
         }
     }
 
     drawAllEnemies = () => {
         this.enemiesArr.forEach((enemy) => {
-            enemy.drawEnemy();
+            enemy.drawEnemies()
         });
     }
 
@@ -55,11 +55,11 @@ class Game {
          if (this.treesArr.length === 0){
             let maxTrees = 20;
             for (let i = 0; i < maxTrees; i++){
-                let randomPosX =  (Math.random() * (this.bg.w - this.bg.x)) + this.bg.x;
-                let randomPosY =  (Math.random() * (this.bg.h - this.bg.y)) + this.bg.y;
+                let randomPosX =  (Math.random() * ((this.bg.w / 2) - this.bg.x / 2)) + (this.bg.x /2);
+                let randomPosY =  (Math.random() * ((this.bg.h / 2) - this.bg.y / 2)) + (this.bg.y /2);
                 let tree = new Trees (randomPosX, randomPosY);
                 this.treesArr.push(tree);
-                console.log ('tree spawned');
+                console.log (tree.x, tree.y);
             }
         }
     }
@@ -119,6 +119,7 @@ class Game {
 
     //colissions
     spearEnemyColission = () => {
+        
         this.spearsArr.forEach((spear, spearIndex) => {
            this.enemiesArr.forEach((enemy, index) => {
             if( spear.x < enemy.x + enemy.w &&
@@ -127,10 +128,11 @@ class Game {
                 spear.h + spear.y > enemy.y){
                 this.enemiesArr.splice(index, 1)
                 this.spearsArr.splice(spearIndex, 1)
-                // console.log("enemigo asesinado");
+                this.score++;
             } 
            })
         });
+
        }
 
     enemyPlayerColission = () => {
@@ -138,8 +140,12 @@ class Game {
             if (enemy.x < this.caveWoman.x + this.caveWoman.w &&
                 enemy.x + enemy.w > this.caveWoman.x &&
                 enemy.y < this.caveWoman.y + this.caveWoman.h &&
-                enemy.h + enemy.y > this.caveWoman.y && this.frames % 30 === 0) {
+                enemy.h + enemy.y > this.caveWoman.y && enemy.isCollisionOn === true) {
+                    enemy.isCollisionOn = false;
                     this.caveWoman.health -= 1;
+                    setTimeout(() => {
+                        enemy.isCollisionOn = true;
+                    }, 2000);
                     console.log(this.caveWoman.health)
                 }
                     
@@ -176,7 +182,7 @@ class Game {
                     setTimeout(() => {
                         console.log('setTimeOut');
                        tree.isBerryOn = true;
-                    }, 5000);
+                    }, 45000);
                 }
               
             }) 
@@ -188,6 +194,7 @@ class Game {
         this.isGameOn = false;
         canvas.style.display = "none";
         gameoverScreen.style.display = "flex";
+        scoreDOM.innerHTML = `Score: ${this.score}`
     }
             
     gameLoop = () => {
@@ -217,7 +224,7 @@ class Game {
         this.bgPlayerColission();
         this.treePlayerColission();
         
-
+        
         //4. recursion control
 
         if (this.isGameOn === true){

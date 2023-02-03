@@ -1,45 +1,95 @@
-@import url('https://fonts.googleapis.com/css2?family=Moo+Lah+Lah&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Hanalei+Fill&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Skranji:wght@700&display=swap');
 body {
     margin: 0;
     background-color: lightgray;
     background-image: url('../images/html-background.jpg');
     background-size: cover;
+    overflow: hidden;
   }
-
+  #start-screen {
+    display: flex;
+    height: 100%;
+    margin-top: 0;
+  }
+ 
   #start-screen h1{
-    font-family: 'Moo Lah Lah', cursive;
+    font-family: 'Hanalei Fill', cursive;
+    color: rgb(29, 63, 29);
     font-size: 5em;
     text-align: center;
+    margin: 0 auto;
+  }
+  #start-screen h3 {
+    font-family: 'Hanalei Fill', cursive;
+    font-size: 3em;
+    color: rgb(29, 63, 29);
+    margin: 0px;
+  }
+  #start-screen img {
+    width: 30%;
   }
   
-  #my-canvas {
+   #my-canvas {
     background-color: darkgray;
   }
   
-  #start-btn, #restart-btn {
-    background-color: green;
-    color: white;
-    padding: 20px;
-    font-size: 20px;
-    margin-top: 40px;
-    border-radius: 10px; 
-  }
+ #start-btn, #restart-btn {
   
-  .container {
+  background-color: rgb(61, 22, 22);
+  border: 2px;
+  color: white;
+  width:200px;
+  padding: 20px;
+  font-size: 20px;
+  margin-top: 40px;
+  border-radius: 10px; 
+ }
+ 
+  
+  .container-flex{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 50px;
+    height: 100vh
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
   
-  #my-canvas {
-    display: none; /* no muestres este elemento en el DOM*/
+  #canvas {
+    display: none; 
   }
   
   #gameover-screen {
-    display: none; /* no muestres este elemento en el DOM */
+    display: none; 
+    height: 100%;
+    margin-top: 0;
+  }
+  #gameover-screen h1 {
+    font-family: 'Skranji', cursive;
+    color: rgb(15, 39, 15);
+    font-size: 5em;
+    text-align: center;
+    margin: 0 auto;
+  }
+  #gameover-screen h3 {
+    font-family: 'Skranji', cursive;
+    font-size: 2em;
+    color:  rgb(15, 39, 15);
+    margin: 0px;
+    text-align: center;
+    margin-left: 200px;
+    margin-right: 200px;
+  }
+
+  #gameover-screen img {
+    width: 30%;
   }
 
   #lives {

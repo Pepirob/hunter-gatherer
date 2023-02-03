@@ -8,20 +8,33 @@ class Enemies {
         this.enemyBgSpeed = bgSpeed;
         this.playerPosX = playerPosX;
         this.playerPosY = playerPosY;
-        this.image = new Image();
-        this.image.src = './images/animal.png'
-        this.invertedImage = new Image ();
-        this.invertedImage.src = './images/animal-inverted.png'
+        this.lionImage = new Image();
+        this.lionImage.src = './images/lion.png';
+        this.invertedLionImage = new Image ();
+        this.invertedLionImage.src = '../images/lion2.png';
+        this.wolfImage = new Image();
+        this.wolfImage.src = '../images/wolf.png'
+        this.invertedWolfImage = new Image ();
+        this.invertedWolfImage.src = '../images/wolf2.png'
+        this.randomNum = Math.floor(Math.random() * 2)
+        this.isCollisionOn = true;
     }
 
     //METHODS
+        drawEnemies = () => {
+            
+            if (this.randomNum === 1){
+                if(this.x > game.caveWoman.x){
+                    ctx.drawImage(this.lionImage, this.x, this.y, this.w, this.h);
+                }else {ctx.drawImage(this.invertedLionImage, this.x, this.y, this.w, this.h);}
+            } else{
+                if(this.x > game.caveWoman.x){
+                    ctx.drawImage(this.wolfImage, this.x, this.y, this.w, this.h);
+                }else {ctx.drawImage(this.invertedWolfImage, this.x, this.y, this.w, this.h);}
+            }
+        }
 
-    drawEnemy = () => {
-        if(this.x > game.caveWoman.x){
-            ctx.drawImage(this.invertedImage, this.x, this.y, this.w, this.h);
-        }else {ctx.drawImage(this.image, this.x, this.y, this.w, this.h);}
-        
-    }
+    
 
     // Moving 
     // enemy towards player

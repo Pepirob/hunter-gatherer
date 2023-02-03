@@ -6,6 +6,7 @@ const ctx = canvas.getContext('2d');
 const startScreen = document.querySelector("#start-screen");
 const gameoverScreen = document.querySelector('#gameover-screen');
 const restartBtn = document.querySelector("#restart-btn");
+const scoreDOM = document.querySelector("#score");
 
 
 
@@ -60,12 +61,12 @@ const spearMechanic = (event) => {
         game.spearsArr.push(spear);
         setTimeout(() => {
             game.spearsArr.splice(0, 1)
-        }, 500);
+        }, 800);
     } else {let spear = new Spear (x, y, game.caveWoman.x, game.caveWoman.y);
         game.spearsArr.push(spear);
         setTimeout(() => {
             game.spearsArr.splice(0, 1)
-        }, 500);}
+        }, 800);}
 }
 
 // ADDEVENTLISTENERS
