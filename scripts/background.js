@@ -14,7 +14,7 @@ class Background {
         this.bonfireW = 50;
         this.bonfireH = 60;
         this.caveImage = new Image ();
-        this.caveImage.src = '../images/cave.png'
+        this.caveImage.src = './images/cave.png'
     }
 
     //METHODS

@@ -11,11 +11,11 @@ class Enemies {
         this.lionImage = new Image();
         this.lionImage.src = './images/lion.png';
         this.invertedLionImage = new Image ();
-        this.invertedLionImage.src = '../images/lion2.png';
+        this.invertedLionImage.src = './images/lion2.png';
         this.wolfImage = new Image();
-        this.wolfImage.src = '../images/wolf.png'
+        this.wolfImage.src = './images/wolf.png'
         this.invertedWolfImage = new Image ();
-        this.invertedWolfImage.src = '../images/wolf2.png'
+        this.invertedWolfImage.src = './images/wolf2.png'
         this.randomNum = Math.floor(Math.random() * 2)
         this.isCollisionOn = true;
     }
