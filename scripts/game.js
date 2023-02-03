@@ -140,7 +140,7 @@ class Game {
             if (enemy.x < this.caveWoman.x + this.caveWoman.w &&
                 enemy.x + enemy.w > this.caveWoman.x &&
                 enemy.y < this.caveWoman.y + this.caveWoman.h &&
-                enemy.h + enemy.y > this.caveWoman.y && enemy.isCollisionOn === true) {
+                enemy.h + enemy.y > this.caveWoman.y && enemy.isCollisionOn === true && this.frames % 15 === 0) {
                     enemy.isCollisionOn = false;
                     this.caveWoman.health -= 1;
                     setTimeout(() => {
