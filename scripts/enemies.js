@@ -1,5 +1,6 @@
 class Enemies {
     constructor (posX, posY, speed, bgSpeed, playerPosX, playerPosY) {
+        // Position
         this.x = posX;
         this.y = posY;
         this.w = 100;
@@ -8,6 +9,8 @@ class Enemies {
         this.enemyBgSpeed = bgSpeed;
         this.playerPosX = playerPosX;
         this.playerPosY = playerPosY;
+        
+        // Images
         this.lionImage = new Image();
         this.lionImage.src = './images/lion.png';
         this.invertedLionImage = new Image ();
@@ -16,7 +19,11 @@ class Enemies {
         this.wolfImage.src = './images/wolf.png'
         this.invertedWolfImage = new Image ();
         this.invertedWolfImage.src = './images/wolf2.png'
+
+        //Randomiser
         this.randomNum = Math.floor(Math.random() * 2)
+
+        // State cchecker
         this.isCollisionOn = true;
     }
 
@@ -37,7 +44,7 @@ class Enemies {
     
 
     // Moving 
-    // enemy towards player
+    // Enemy towards player
     moveEnemyToCenter = () => {
         if(this.x < this.playerPosX) {
             this.x += this.enemySpeed;

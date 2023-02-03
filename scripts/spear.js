@@ -1,14 +1,17 @@
 class Spear {
     constructor (mouseX, mouseY, playerPosX, playerPosY) {
+        // Spear properties
         this.x = playerPosX;
         this.y = playerPosY;
         this.w = 80;
         this.h = 20;
         this.speed = 10;
         this.spearbgSpeed = 15;
-        //mouse possition
+        // Mouse possition
         this.mouseX = mouseX;
         this.mouseY = mouseY;
+
+        // Image spawning
         this.image = new Image();
         if(mouseX < playerPosX && mouseY > playerPosY - playerPosY / 2 && mouseY < playerPosY + playerPosY / 2){
             this.image.src = "./images/SpearLeftt.png"
@@ -23,7 +26,6 @@ class Spear {
             this.w = 20;
             this.h = 80;
         }
-      
     }
 
     // METHODS
@@ -32,7 +34,9 @@ class Spear {
         
         ctx.drawImage(this.image, this.x, this.y, this.w, this.h)
     }
-    //spear throwing movement
+
+    // Spear throwing movement
+    
     throwSpear = () => {
         if(this.x <= this.mouseX) {
             this.x += this.speed;

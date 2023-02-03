@@ -1,14 +1,13 @@
-# NAME OF YOUR PROYECT
-Hunter-Gatherer
+# HUNTER-GATHERER
 
-## [See the Game](www.your-url-here.com)
-NOTE: above link will be added later
+
+## [See the Game](https://pepirob.github.io/hunter-gatherer/)
 
 # Description
 
 A mini-game that takes us back to our origins. Embrace your primal instincts to survive in hostile nature. Defend yourself from potential predators and competitors, search for resources to satisfy your most basic needs and shelter from the cold in the warmth of a bonfire.
 
-# Main Functionalities
+# MVP Functionalities
 
 - Neanderthal moves in four directions.
 - Neanderthal throws spears.
@@ -19,6 +18,7 @@ A mini-game that takes us back to our origins. Embrace your primal instincts to 
 - Random generated Neanderthal enemies that throws spears.
 - Gather fruits and berries with boosts
 - Resting in bonfire increases spear throwing speed by time.
+- Difficult lvl up phase: zombi mode.
 
 # Proyect Structure
 

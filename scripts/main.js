@@ -8,30 +8,17 @@ const gameoverScreen = document.querySelector('#gameover-screen');
 const restartBtn = document.querySelector("#restart-btn");
 const scoreDOM = document.querySelector("#score");
 
-
-
 let game;
-
 
 // EVENT FUNCTIONS
 
 const startGame = () => {
     console.log('hola mundo');
-    // change stages
     startScreen.style.display = "none";
-
     canvas.style.display = 'flex';
-
     gameoverScreen.style.display = 'none';
-
-
-
-    // create a game 
     game = new Game();
-    
-    // ininitializate the game
-    game.gameLoop()
-
+    game.gameLoop();
 }
 
 //Player movement
@@ -50,12 +37,11 @@ const keyUpCheck = (event) => {
 }
 
 // Spear mechanics
-
-
 const spearMechanic = (event) => {
     const rect = canvas.getBoundingClientRect()
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
+    // Conditioning spearhead to mouse click position 
     if (x > (canvas.width / 2)){
         let spear = new Spear (x - game.spear.w, y, game.caveWoman.x, game.caveWoman.y);
         game.spearsArr.push(spear);

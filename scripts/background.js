@@ -1,31 +1,42 @@
 class Background {
     constructor() {
-        this.bg = new Image()
-        this.bg.src = './images/grassland.png'
+        // Background position
         this.x = -950;
         this.y = -1050;
         this.w = 2700;
         this.h = 2700;
-        this.bgSpeed = 8;
-        this.bonFireImage = new Image()
-        this.bonFireImage.src = './images/fire_pit-removebg-preview.png';
+
+        // Bonfire position
         this.bonfireX = 375;
         this.bonfireY = 350;
         this.bonfireW = 50;
         this.bonfireH = 60;
+
+        // Moving speed
+
+        this.bgSpeed = 8;
+        // Images
+
+        this.bg = new Image()
+        this.bg.src = './images/grassland.png'
+        this.bonFireImage = new Image()
+        this.bonFireImage.src = './images/fire_pit-removebg-preview.png';
         this.caveImage = new Image ();
         this.caveImage.src = './images/cave.png'
     }
 
-    //METHODS
-    //Drawing
+    // METHODS
+    // Drawing
     drawBg = () => {
         ctx.drawImage(this.bg, this.x, this.y, this.w, this.h);
         ctx.drawImage(this.bonFireImage, this.bonfireX , this.bonfireY, this.bonfireW, this.bonfireH)
         ctx.drawImage(this.caveImage, this.bonfireX - 140, this.bonfireY - 140, this.bonfireW + 100, this.bonfireH + 100)
     }
     
-    //moving
+    // Moving
+
+    // All elements movement methods
+
     moveBgUp = () => {
         this.y += this.bgSpeed;
         this.bonfireY += this.bgSpeed;
@@ -70,5 +81,4 @@ class Background {
             tree.berryX -= (this.bgSpeed);
         })
     }
-    
 }

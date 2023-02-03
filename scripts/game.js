@@ -1,5 +1,4 @@
 class Game {
-
     constructor () {
         this.bg = new Background();
         this.caveWoman = new CaveWoman();
@@ -11,14 +10,13 @@ class Game {
         this.isGameOn = true;
         this.frames = 1;
         this.score = 0;
-        //movement property
+        // Movement properties
         this.controller = {
             KeyW: {pressed: false, functionBg: this.bg.moveBgUp},
             KeyS: {pressed: false, functionBg: this.bg.moveBgDown},
             KeyA: {pressed: false, functionBg: this.bg.moveBgLeft },
             KeyD: {pressed: false, functionBg: this.bg.moveBgRight}
         }
-
         // Sound
         this.backgroundSong = new Audio ();
         this.backgroundSong.src = './sound/Aloha.m4a'
@@ -32,20 +30,18 @@ class Game {
     }
     
     spawningEnemies = () => {
+        // Randomisation of the enemy respawn time rate.
         let randomFrame = Math.floor(Math.random() * 1200 + 1)
 
         if(this.enemiesArr === 0 || this.frames % randomFrame === 0) {
             for (let i = 0; i < 2; i++) {
-                let randomSpeed = Math.random() * (11 - 6) + 1;
+                let randomSpeed = Math.random() * (15 - 8) + 1;
                 let randomBgSpeed = Math.random() * (8 - 5) + 5;
                 let randomPosX =  (Math.random() * (this.bg.w - this.bg.x)) + this.bg.x;
                 let randomPosY =  (Math.random() * (this.bg.h - this.bg.y)) + this.bg.y;
                 let enemy = new Enemies (randomPosX, randomPosY, randomSpeed, randomBgSpeed, this.caveWoman.x, this.caveWoman.y);
            
-            
                 this.enemiesArr.push(enemy);
-            
-                console.log(enemy.x, enemy.y);
             }
         }
     }
@@ -64,14 +60,12 @@ class Game {
                 let randomPosY =  (Math.random() * ((this.bg.h / 2) - this.bg.y / 2)) + (this.bg.y /2);
                 let tree = new Trees (randomPosX, randomPosY);
                 this.treesArr.push(tree);
-                console.log (tree.x, tree.y);
             }
         }
     }
 
     drawAllTreesBerries = () => {
         this.treesArr.forEach((tree) => {
-            // console.log(tree.x, tree.y)
             tree.drawTree (this.frames);
             tree.drawBerry();
         });
@@ -84,26 +78,22 @@ class Game {
     }
 
     drawHealth = () => {
-        
         for (let i = 0; i < this.health.health; i++){
             let x = this.health.x + i * (this.health.w + (this.health.x / 2));
             
         if (this.caveWoman.health >= i + 1){
             this.health.drawHeart(x);
-            
-        } else {
+            } else {
             this.health.drawVoidHeart(x);
          }
         }
     }
     
 
-    // Movement
+    // Game dynamics
     movement = () => {
         Object.keys(this.controller).forEach((key) => {
-            // console.log("presionando")
             if(this.controller[key].pressed === true){
-                // console.log("presionando")
                 this.controller[key].functionBg();
             }
         })
@@ -122,10 +112,10 @@ class Game {
         
     }
 
-    //colissions
+    // Colissions
     spearEnemyColission = () => {
-        
-        this.spearsArr.forEach((spear, spearIndex) => {
+        //Iterating throught two arrays, cheking colissions betweern them.
+         this.spearsArr.forEach((spear, spearIndex) => {
            this.enemiesArr.forEach((enemy, index) => {
             if( spear.x < enemy.x + enemy.w &&
                 spear.x + spear.w > enemy.x &&
@@ -137,8 +127,7 @@ class Game {
             } 
            })
         });
-
-       }
+    }
 
     enemyPlayerColission = () => {
         this.enemiesArr.forEach((enemy) => {
@@ -150,10 +139,8 @@ class Game {
                     this.caveWoman.health -= 1;
                     setTimeout(() => {
                         enemy.isCollisionOn = true;
-                    }, 2000);
-                    console.log(this.caveWoman.health)
+                    }, 1500);
                 }
-                    
             if (this.caveWoman.health === 0){
                 this.gameOver()
             }
@@ -181,18 +168,13 @@ class Game {
                 tree.x + tree.w > this.caveWoman.x &&
                 tree.y < this.caveWoman.y + this.caveWoman.h &&
                 tree.h + tree.y > this.caveWoman.y) {
-                    console.log ('berry colission')
                     tree.isBerryOn = false;
                     this.caveWoman.health += 1;
                     setTimeout(() => {
-                        console.log('setTimeOut');
                        tree.isBerryOn = true;
                     }, 45000);
                 }
-              
-            }) 
-               
-                
+        }) 
     }
 
     gameOver = () => {
@@ -209,10 +191,10 @@ class Game {
 
         this.backgroundSong.play();
 
-        //1. clean canvas
+        //1. Clean canvas
         this.clearCanvas();
 
-        //2. drawings
+        //2. Drawings
         this.bg.drawBg();
         this.caveWoman.drawCaveWoman(this.controller, this.frames);
         this.spawningEnemies();
@@ -222,8 +204,7 @@ class Game {
         this.drawAllSpears();
         this.drawHealth();
         
-
-        //3. actions
+        //3. Actions
         this.movement();
         this.allEnemiesMoves();
         this.throwAllSpears();
@@ -232,13 +213,14 @@ class Game {
         this.bgPlayerColission();
         this.treePlayerColission();
         
-        
-        //4. recursion control
+        //4. Recursion control
 
         if (this.isGameOn === true){
             requestAnimationFrame(this.gameLoop)
         }
     }
+        
+
 }
           
 

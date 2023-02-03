@@ -1,13 +1,15 @@
 console.log()
 class CaveWoman {
     constructor() {
+        // Position
         this.x = 375;
         this.y = 275;
         this.w = 70;
         this.h = 80;
         this.health = 5;
         
-        //DOWN
+        // Images
+        // DOWN
         this.steadyDownImage = new Image();
         this.steadyDownImage.src = './images/player-down/steady-down.png'
         this.movesDownImage1 = new Image();
@@ -15,26 +17,27 @@ class CaveWoman {
         this.movesDownImage2 = new Image();
         this.movesDownImage2.src = './images/player-down/down2.png'
 
-        //UP
+        // UP
         this.movesUpImage1 = new Image();
         this.movesUpImage1.src = './images/player-up/moves-up1.png'
         this.movesUpImage2 = new Image();
         this.movesUpImage2.src = './images/player-up/moves-up2.png'
     
-        //RIGHT
+        // RIGHT
         this.movesRightImage1 = new Image();
         this.movesRightImage1.src = './images/player-right/left1.png'
         this.movesRightImage2 = new Image();
         this.movesRightImage2.src = './images/player-right/left2.png'
 
-        //LEFT
+        // LEFT
         this.movesLeftImage1 = new Image();
         this.movesLeftImage1.src = './images/player-left/left1.png'
         this.movesLeftImage2 = new Image();
         this.movesLeftImage2.src = './images/player-left/left2.png'
     }
 
-    //METHODS
+    // METHODS
+    // Player animation
     drawCaveWoman = (controller, frames) => {
         if(controller.KeyA.pressed === false && controller.KeyD.pressed === false && controller.KeyS.pressed === false && controller.KeyW.pressed === false){
             ctx.drawImage(this.steadyDownImage, this.x, this.y, this.w, this.h)
@@ -69,5 +72,4 @@ class CaveWoman {
             }
         }
     }
-   
 }

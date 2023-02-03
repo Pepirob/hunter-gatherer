@@ -1,18 +1,23 @@
 class Trees {
     constructor(posX, posY) {
+        // Tree position
         this.x = posX;
         this.y = posY;
         this.w = 70;
         this.h = 120;
+
+        // Berry position
+        this.berryX = posX + 20;
+        this.berryY = posY + 35;
+        this.berryW = 30;
+        this.berryH = 30;
+
+        // Images
         this.image = new Image ();
         this.image.src = './images/tree1.png'
         this.image2 = new Image ();
         this.image2.src = './images/tree2.png'
         this.isBerryOn = true;
-        this.berryX = posX + 20;
-        this.berryY = posY + 35;
-        this.berryW = 30;
-        this.berryH = 30;
         this.berryImage = new Image ();
         this.berryImage.src = './images/cranberry.png'
     }
