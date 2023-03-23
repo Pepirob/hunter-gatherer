@@ -60,7 +60,8 @@ Event functions:
   - this.backgroundSong = objet from class
   - this.backgroundSong.src = src
   - this.backgroundSong.volume = number;
-    }
+
+}
 
 - clearCanvas () {}
 - spawningEnemies () {}
@@ -106,7 +107,8 @@ Event functions:
   - this.movesLeftImage1.src = src
   - this.movesLeftImage2 = objet from class;
   - this.movesLeftImage2.src = src
-    }
+
+}
 
 - drawCaveWoman () {}
 - moveBgUp () {}
@@ -133,7 +135,8 @@ Event functions:
   - this.bonFireImage.src = src
   - this.caveImage = objet from class
   - this.caveImage.src = src
-    }
+
+}
 
 - drawBg () {}
 - moveBgUp () {}
@@ -160,7 +163,8 @@ Event functions:
   - this.invertedWolfImage.src = src
   - this.randomNum = number
   - this.isCollisionOn = boolean;
-    }
+
+}
 
 - drawEnemies () {}
 - moveEnemyToCenter () {}
@@ -178,7 +182,8 @@ Event functions:
   - this.voidHeartImage = object from class
   - this.voidHeartImage.src = src
   - this.health = number
-    }
+
+}
 
 - drawHeart () {}
 - drawVoidHeart () {}
@@ -197,7 +202,8 @@ Event functions:
   - this.mouseY = number;
   - this.image = object from class
   - this.image.src = src
-    }
+
+}
 
 - drawSpear () {}
 - throwSpear () {}
@@ -221,7 +227,8 @@ Event functions:
   - this.isBerryOn = true;
   - this.berryImage = object from class
   - this.berryImage.src = src
-    }
+
+}
 
 - drawTree () {}
 - drawBerry () {}
