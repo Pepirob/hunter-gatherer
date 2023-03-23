@@ -45,6 +45,7 @@ Event functions:
 ## game.js
 
 - Game {
+
   - this.bg = objet from class
   - this.caveWoman = objet from class
   - this.health objet = from class
@@ -60,6 +61,7 @@ Event functions:
   - this.backgroundSong.src = src
   - this.backgroundSong.volume = number;
     }
+
 - clearCanvas () {}
 - spawningEnemies () {}
 - drawAllEnemies () {}
